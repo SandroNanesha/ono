@@ -27,18 +27,28 @@ const App = () => {
 
   return (
     <div className="app">
-      <div className="grid">
-        <div className="grid-item">
-          <button className="mic-button" onClick={handleMicrophoneClick}>
-            <span className="mic-icon">🎙️</span>
-            მოუსმინე შენს ოთხფეხა მეგობარს
-          </button>
-        </div>
-        {dogImages.map((src, index) => (
-          <div className="grid-item" key={index}>
-            <img src={src} alt={`Dog ${index + 1}`} className="dog-image" />
-          </div>
-        ))}
+      {dogImages.map((src, index) => {
+        const randomX = Math.random() * 80; // Random position from 0% to 80% of the width
+        const randomY = Math.random() * 80; // Random position from 0% to 80% of the height
+        return (
+          <img
+            key={index}
+            src={src}
+            alt={`Dog ${index + 1}`}
+            className="dog-image"
+            style={{
+              top: `${randomY}%`,
+              left: `${randomX}%`,
+            }}
+          />
+        );
+      })}
+
+      <div className="button-container">
+        <button className="mic-button" onClick={handleMicrophoneClick}>
+          <span className="mic-icon">🎙️</span>
+          მოუსმინე შენს ოთხფეხა მეგობარს
+        </button>
       </div>
 
       {isRecording && (
